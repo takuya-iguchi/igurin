@@ -8,7 +8,7 @@ https://www.vagrantup.com/downloads.html
 https://www.virtualbox.org/wiki/Downloads
 
 ## boxの設定
-$ cd d: <br>
+$ d: <br>
 $ cd d:\vagrant <br>
 $ vagrant box add {title} {url} <br>
 $ vagrant init {title} <br>
