@@ -1,9 +1,10 @@
-https://www.terraform.io/
-https://registry.terraform.io/
-https://github.com/hashicorp/terraform
-https://github.com/terraform-providers
-https://github.com/segmentio/terraform-docs
+https://www.terraform.io/ <br>
+https://registry.terraform.io/ <br>
+https://github.com/hashicorp/terraform <br>
+https://github.com/terraform-providers <br>
+https://github.com/segmentio/terraform-docs <br>
 
+## terraformインストール・設定(Linux)
 #wget https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip
 #unzip terraform_0.11.0_linux_amd64.zip
 #rm terraform_0.11.0_linux_amd64.zip
