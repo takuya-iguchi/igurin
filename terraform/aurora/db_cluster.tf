@@ -11,7 +11,7 @@ resource "aws_rds_cluster" "default" {
   preferred_backup_window         = "17:54-18:24"
   preferred_maintenance_window    = "wed:01:00-wed:01:30"
   port                            = 3306
-  vpc_security_group_ids          = ["sg-408a6539"]
+  vpc_security_group_ids          = [ "${aws_security_group.default.id}"  ]
   db_subnet_group_name            = "${var.subnet_group_name}"
   storage_encrypted               = "${var.storage_encrypted}"
   db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.default.name}"

@@ -1,7 +1,7 @@
 ############################
 ## Global
 ############################
-variable "service" { default = "gunz"}
+variable "service" { default = "iguchi"}
 variable "env"     { default = "dev"}
 
 ############################
@@ -23,8 +23,8 @@ variable "cluster_instance_class"  { default = "db.t2.medium" }
 ## Cluster
 ############################
 variable "cluster_name"    { default = "db" }
-variable "database_name"    { default = "capdev" }
-variable "username" { default = "capdev" }
-variable "password" { default = "capdev!capdev" }
+variable "database_name"    { default = "iguchi" }
+variable "username" { default = "iguchi" }
+variable "password" { default = "iguchitakuya" }
 variable "subnet_group_name"   { default = "default-vpc-b9d13cde" }
 variable "storage_encrypted"   { default = "False" }
