@@ -39,7 +39,7 @@ variable "tags" {
 #####################################
 variable "azs" {
   description = "A list of Availability zones in the region"
-  default     = ["ap-northeast-1a","ap-northeast-1c"]
+  default     = []
 }
 
 #####################################
