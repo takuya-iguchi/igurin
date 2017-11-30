@@ -1,4 +1,4 @@
-variable "db_parameters" {
+variable "db_parameters_prd" {
   type        = "list"
   default     = [
     {

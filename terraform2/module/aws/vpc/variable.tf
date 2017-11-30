@@ -55,6 +55,36 @@ variable "public_subnets" {
   default     = []
 }
 
+variable "public_subnets_name_prd" {
+  description = "A list of public subnets inside the Name."
+  default     = []
+}
+
+variable "public_subnets_prd" {
+  description = "A list of public subnets inside the VPC."
+  default     = []
+}
+
+variable "public_subnets_name_stg" {
+  description = "A list of public subnets inside the Name."
+  default     = []
+}
+
+variable "public_subnets_stg" {
+  description = "A list of public subnets inside the VPC."
+  default     = []
+}
+
+variable "public_subnets_name_other" {
+  description = "A list of public subnets inside the Name."
+  default     = []
+}
+
+variable "public_subnets_other" {
+  description = "A list of public subnets inside the VPC."
+  default     = []
+}
+
 variable "public_subnet_tags" {
   description = "Additional tags for the public subnets"
   default     = {"Terraform" = "true"}
@@ -73,12 +103,32 @@ variable "map_public_ip_on_launch" {
 #####################################
 # Subnet Settings(Private)
 #####################################
-variable "private_subnets_name" {
+variable "private_subnets_name_prd" {
   description = "A list of private subnets inside the Name."
   default     = []
 }
 
-variable "private_subnets" {
+variable "private_subnets_prd" {
+  description = "A list of private subnets inside the VPC."
+  default     = []
+}
+
+variable "private_subnets_name_stg" {
+  description = "A list of private subnets inside the Name."
+  default     = []
+}
+
+variable "private_subnets_stg" {
+  description = "A list of private subnets inside the VPC."
+  default     = []
+}
+
+variable "private_subnets_name_other" {
+  description = "A list of private subnets inside the Name."
+  default     = []
+}
+
+variable "private_subnets_other" {
   description = "A list of private subnets inside the VPC."
   default     = []
 }
@@ -110,7 +160,25 @@ variable "single_nat_gateway" {
 #####################################
 # DBSubnet Settings
 #####################################
-variable "database_subnets" {
-  description = "A list of database subnets inside the VPC."
-  default     = []
+variable "create_database_subnet_group_prd" {
+  description = "Controls, if should database subnet group be created."
+  default     = false
+}
+
+variable "create_database_subnet_group_stg" {
+  description = "Controls, if should database subnet group be created."
+  default     = false
+}
+
+#####################################
+# elasticache Settings
+#####################################
+variable "create_elasticache_subnet_group_prd" {
+  description = "Controls, if should database subnet group be created."
+  default     = false
+}
+
+variable "create_elasticache_subnet_group_stg" {
+  description = "Controls, if should database subnet group be created."
+  default     = false
 }

@@ -1,4 +1,4 @@
-variable "cluster_parameters" {
+variable "cluster_parameters_prd" {
   type        = "list"
   default     = [
     {

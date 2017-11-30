@@ -2,64 +2,106 @@
 ## aws_rds_cluster
 ############################
 
-resource "aws_rds_cluster" "default" {
-  cluster_identifier              = "${var.cluster_name}"
-  database_name                   = "${var.database_name}"
-  master_username                 = "${var.username}"
-  master_password                 = "${var.password}"
-  backup_retention_period         = "${var.backup}"
-  preferred_backup_window         = "${var.backup_window}"
-  preferred_maintenance_window    = "${var.mente_window}"
-  port                            = "${var.port}"
-  vpc_security_group_ids          = [ "${aws_security_group.default.id}"  ]
-  db_subnet_group_name            = "${var.subnet_group_name}"
-  storage_encrypted               = "${var.storage_encrypted}"
-  db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.default.name}"
+resource "aws_rds_cluster" "prd" {
+  cluster_identifier              = "${var.cluster_name_prd}"
+  database_name                   = "${var.database_name_prd}"
+  master_username                 = "${var.username_prd}"
+  master_password                 = "${var.password_prd}"
+  backup_retention_period         = "${var.backup_prd}"
+  preferred_backup_window         = "${var.backup_window_prd}"
+  preferred_maintenance_window    = "${var.mente_window_prd}"
+  port                            = "${var.port_prd}"
+  vpc_security_group_ids          = [ "${var.security_group_id_prd}"  ]
+  db_subnet_group_name            = "${var.subnet_group_name_prd}"
+  storage_encrypted               = "${var.storage_encrypted_prd}"
+  db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.prd.name}"
+}
+
+resource "aws_rds_cluster" "stg" {
+  cluster_identifier              = "${var.cluster_name_stg}"
+  database_name                   = "${var.database_name_stg}"
+  master_username                 = "${var.username_stg}"
+  master_password                 = "${var.password_stg}"
+  backup_retention_period         = "${var.backup_stg}"
+  preferred_backup_window         = "${var.backup_window_stg}"
+  preferred_maintenance_window    = "${var.mente_window_stg}"
+  port                            = "${var.port_stg}"
+  vpc_security_group_ids          = [ "${var.security_group_id_stg}"  ]
+  db_subnet_group_name            = "${var.subnet_group_name_stg}"
+  storage_encrypted               = "${var.storage_encrypted_stg}"
+  db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.stg.name}"
 }
 
 ############################
 ## rds_instance
 ############################
 
-resource "aws_rds_cluster_instance" "default" {
-  count = "${var.cluster_instance_count}"
+resource "aws_rds_cluster_instance" "prd" {
+  count = "${var.cluster_instance_count_prd}"
 
-  identifier              = "${var.instance_name}"
-  cluster_identifier      = "${aws_rds_cluster.default.id}"
-  instance_class          = "${var.cluster_instance_class}"
-  db_subnet_group_name    = "${var.subnet_group_name}"
-  db_parameter_group_name = "${aws_db_parameter_group.default.name}"
+  identifier              = "${var.instance_name_prd}"
+  cluster_identifier      = "${aws_rds_cluster.prd.id}"
+  instance_class          = "${var.cluster_instance_class_prd}"
+  db_subnet_group_name    = "${var.subnet_group_name_prd}"
+  db_parameter_group_name = "${aws_db_parameter_group.prd.name}"
   monitoring_role_arn     = "${aws_iam_role.monitoring.arn}"
-  monitoring_interval     = "${var.monitor_intarval}"
+  monitoring_interval     = "${var.monitor_intarval_prd}"
+}
+
+resource "aws_rds_cluster_instance" "stg" {
+  count = "${var.cluster_instance_count_stg}"
+
+  identifier              = "${var.instance_name_stg}"
+  cluster_identifier      = "${aws_rds_cluster.stg.id}"
+  instance_class          = "${var.cluster_instance_class_stg}"
+  db_subnet_group_name    = "${var.subnet_group_name_stg}"
+  db_parameter_group_name = "${aws_db_parameter_group.stg.name}"
+  monitoring_role_arn     = "${aws_iam_role.monitoring.arn}"
+  monitoring_interval     = "${var.monitor_intarval_stg}"
 }
 
 ############################
 ## db_parameter_group
 ############################
-resource "aws_db_parameter_group" "aurora_parameter_group" {
-  name    = "${var.parameter_group_name}"
+resource "aws_db_parameter_group" "prd" {
+  name    = "${var.parameter_group_name_prd}"
   family  = "aurora5.6"
-  description = "${var.parameter_group_description}"
+  description = "${var.parameter_group_description_prd}"
 
-  parameter   = ["${var.db_parameters}"]
+  parameter   = ["${var.db_parameters_prd}"]
 }
 
+resource "aws_db_parameter_group" "stg" {
+  name    = "${var.parameter_group_name_stg}"
+  family  = "aurora5.6"
+  description = "${var.parameter_group_description_stg}"
+
+  parameter   = ["${var.db_parameters_stg}"]
+}
 ############################
 ## cluster_parameter_group
 ############################
-resource "aws_rds_cluster_parameter_group" "aurora_cluster_parameter_group" {
-  name        = "${var.cluster_parameter_group_name}"
+resource "aws_rds_cluster_parameter_group" "prd" {
+  name        = "${var.cluster_parameter_group_name_prd}"
   family      = "aurora5.6"
-  description = "${var.cluster_parameter_group_name}"
+  description = "${var.cluster_parameter_description_prd}"
 
-  parameter   = ["${var.cluster_parameters}"]
+  parameter   = ["${var.cluster_parameters_prd}"]
+}
+
+resource "aws_rds_cluster_parameter_group" "stg" {
+  name        = "${var.cluster_parameter_group_name_stg}"
+  family      = "aurora5.6"
+  description = "${var.cluster_parameter_description_stg}"
+
+  parameter   = ["${var.cluster_parameters_stg}"]
 }
 
 ############################
 ## monitoringRole
 ############################
 resource "aws_iam_role" "monitoring" {
-  name = "${var.service}_${var.env}_rds_monitoring"
+  name = "${var.monitoring_role_name}"
   path = "/"
 
   assume_role_policy = <<POLICY

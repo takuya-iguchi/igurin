@@ -1,40 +1,65 @@
 #################
 # Security group
 #################
-resource "aws_security_group" "this1" {
-  name        = "${var.name1}"
-  description = "${var.description1}"
+resource "aws_security_group" "prd" {
+  name        = "${var.name_prd}"
+  description = "${var.description_prd}"
   vpc_id      = "${var.vpc_id}"
-  tags = "${merge(var.tags, map("Name", format("%s", var.name3)))}"
+  tags = "${merge(var.tags, map("Name", format("%s", var.name_prd)))}"
 }
 
-resource "aws_security_group" "this2" {
-  name        = "${var.name2}"
-  description = "${var.description2}"
+resource "aws_security_group" "stg" {
+  name        = "${var.name_stg}"
+  description = "${var.description_stg}"
   vpc_id      = "${var.vpc_id}"
-  tags = "${merge(var.tags, map("Name", format("%s", var.name3)))}"
+  tags = "${merge(var.tags, map("Name", format("%s", var.name_stg)))}"
 }
 
-resource "aws_security_group" "this3" {
-  name        = "${var.name3}"
-  description = "${var.description3}"
+resource "aws_security_group" "other" {
+  name        = "${var.name_other}"
+  description = "${var.description_other}"
   vpc_id      = "${var.vpc_id}"
-  tags = "${merge(var.tags, map("Name", format("%s", var.name3)))}"
+  tags = "${merge(var.tags, map("Name", format("%s", var.name_other)))}"
 }
 
 #################
 # Security Rule
 #################
-resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
-  count = "${var.create ? length(var.ingress_with_cidr_blocks) : 0}"
+resource "aws_security_group_rule" "ingress_rules_prd" {
+  count = "${length(var.cidr_blocks_prd)}"
 
-  security_group_id = "${aws_security_group.this1.id}"
+  security_group_id = "${aws_security_group.prd.id}"
   type              = "ingress"
 
-  cidr_blocks     = ["${split(",", lookup(var.ingress_with_cidr_blocks[count.index], "cidr_blocks", join(",", var.ingress_cidr_blocks)))}"]
-  prefix_list_ids = ["${var.ingress_prefix_list_ids}"]
+  cidr_blocks      = ["${var.cidr_blocks_prd[count.index]}"]
 
-  from_port = "${lookup(var.ingress_with_cidr_blocks[count.index], "from_port", element(var.rules[lookup(var.ingress_with_cidr_blocks[count.index], "rule", "_")], 0))}"
-  to_port   = "${lookup(var.ingress_with_cidr_blocks[count.index], "to_port", element(var.rules[lookup(var.ingress_with_cidr_blocks[count.index], "rule", "_")], 1))}"
-  protocol  = "${lookup(var.ingress_with_cidr_blocks[count.index], "protocol", element(var.rules[lookup(var.ingress_with_cidr_blocks[count.index], "rule", "_")], 2))}"
+  from_port = "${var.from_port_prd[count.index]}"
+  to_port   = "${var.to_port_prd[count.index]}"
+  protocol  = "${var.protocol_prd[count.index]}"
+}
+
+resource "aws_security_group_rule" "ingress_rules_stg" {
+  count = "${length(var.cidr_blocks_stg)}"
+
+  security_group_id = "${aws_security_group.stg.id}"
+  type              = "ingress"
+
+  cidr_blocks      = ["${var.cidr_blocks_stg[count.index]}"]
+
+  from_port = "${var.from_port_stg[count.index]}"
+  to_port   = "${var.to_port_stg[count.index]}"
+  protocol  = "${var.protocol_stg[count.index]}"
+}
+
+resource "aws_security_group_rule" "ingress_rules_other" {
+  count = "${length(var.cidr_blocks_other)}"
+
+  security_group_id = "${aws_security_group.other.id}"
+  type              = "ingress"
+
+  cidr_blocks      = ["${var.cidr_blocks_other[count.index]}"]
+
+  from_port = "${var.from_port_other[count.index]}"
+  to_port   = "${var.to_port_other[count.index]}"
+  protocol  = "${var.protocol_other[count.index]}"
 }
