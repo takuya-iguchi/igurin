@@ -2,8 +2,8 @@
 # ALL Settings
 #####################################
 variable "name" {
-  description = "サービス名"
-  default     = "test"
+  description = "service name"
+  default     = ""
 }
 
 #####################################
@@ -11,7 +11,7 @@ variable "name" {
 #####################################
 variable "cidr" {
   description = "The CIDR block for the VPC"
-  default     = "172.20.0.0/16"
+  default     = ""
 }
 
 variable "enable_dns_hostnames" {
@@ -45,15 +45,19 @@ variable "azs" {
 #####################################
 # Subnet Settings(Public)
 #####################################
+variable "public_subnets_name" {
+  description = "A list of public subnets inside the Name."
+  default     = []
+}
+
 variable "public_subnets" {
   description = "A list of public subnets inside the VPC."
-  default     = ["172.20.10.0/24", "172.20.11.0/24"]
+  default     = []
 }
 
 variable "public_subnet_tags" {
   description = "Additional tags for the public subnets"
-  default     = {"Terraform" = "true"
-                 "Netowork" =  "Public"}
+  default     = {"Terraform" = "true"}
 }
 
 variable "public_propagating_vgws" {
@@ -69,15 +73,19 @@ variable "map_public_ip_on_launch" {
 #####################################
 # Subnet Settings(Private)
 #####################################
+variable "private_subnets_name" {
+  description = "A list of private subnets inside the Name."
+  default     = []
+}
+
 variable "private_subnets" {
   description = "A list of private subnets inside the VPC."
-  default     = ["172.20.100.0/24", "172.20.101.0/24", "172.20.110.0/24", "172.20.110.0/24", "172.20.120.0/24"]
+  default     = []
 }
 
 variable "private_subnet_tags" {
   description = "Additional tags for the public subnets"
-  default     = {"Terraform" = "true"
-                 "Netowork" = "Private"}
+  default     = {"Terraform" = "true"}
 }
 
 variable "private_propagating_vgws" {
@@ -91,10 +99,18 @@ variable "private_propagating_vgws" {
 #####################################
 variable "enable_nat_gateway" {
   description = "should be true if you want to provision NAT Gateways for each of your private networks"
-  default     = false
+  default     = true
 }
 
 variable "single_nat_gateway" {
   description = "should be true if you want to provision a single shared NAT Gateway across all of your private networks"
-  default     = false
+  default     = true
+}
+
+#####################################
+# DBSubnet Settings
+#####################################
+variable "database_subnets" {
+  description = "A list of database subnets inside the VPC."
+  default     = []
 }
