@@ -15,6 +15,7 @@ resource "aws_rds_cluster" "prd" {
   db_subnet_group_name            = "${var.subnet_group_name_prd}"
   storage_encrypted               = "${var.storage_encrypted_prd}"
   db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.prd.name}"
+  skip_final_snapshot             = true
 }
 
 resource "aws_rds_cluster" "stg" {
@@ -30,6 +31,7 @@ resource "aws_rds_cluster" "stg" {
   db_subnet_group_name            = "${var.subnet_group_name_stg}"
   storage_encrypted               = "${var.storage_encrypted_stg}"
   db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.stg.name}"
+  skip_final_snapshot             = true
 }
 
 ############################

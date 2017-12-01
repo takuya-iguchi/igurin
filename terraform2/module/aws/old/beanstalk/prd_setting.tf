@@ -7,7 +7,7 @@ variable "option_setting" {
     {
       namespace = "aws:ec2:vpc"
       name = "VPCId"
-      value = "vpc-xxxxx"
+      value = "vpc-d86748b1"
     },
     {
       namespace = "aws:ec2:vpc"
@@ -17,12 +17,12 @@ variable "option_setting" {
     {
       namespace = "aws:ec2:vpc"
       name = "Subnets"
-      value = "subnet-xxxx,subnet-xxxx"
+      value = "subnet-10aafe6b, subnet-29efd040"
     },
     {
       namespace = "aws:ec2:vpc"
       name = "ELBSubnets"
-      value = "subnet-xxxx,subnet-xxxx"
+      value = "subnet-fdabff86,	subnet-b4f1cedd"
     },
     {
       namespace = "aws:ec2:vpc"
@@ -40,12 +40,12 @@ variable "option_setting" {
     {
       namespace = "aws:elb:loadbalancer"
       name = "SecurityGroups"
-      value = "sg-****,sg-****"
+      value = "sg-4799342f"
     },
     {
       namespace = "aws:elb:loadbalancer"
       name = "ManagedSecurityGroup"
-      value = "sg-****"
+      value = "sg-4799342f"
     },
 #####################################
 # Beanstalk Settings
@@ -114,7 +114,7 @@ variable "option_setting" {
     {
       namespace = "aws:autoscaling:launchconfiguration"
       name = "SecurityGroups"
-      value = "sg-******"
+      value = "sg-4799342f"
     },
     {
       namespace = "aws:autoscaling:launchconfiguration"
@@ -129,12 +129,12 @@ variable "option_setting" {
     {
       namespace = "aws:autoscaling:launchconfiguration"
       name = "InstanceType"
-      value = "t2.medium"
+      value = "t2.micro"
     },
     {
       namespace = "aws:autoscaling:launchconfiguration"
       name = "EC2KeyName"
-      value = "****"
+      value = "iguchi-key"
     },
     {
       namespace = "aws:autoscaling:asg"
