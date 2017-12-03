@@ -14,9 +14,7 @@ resource "aws_vpc" "mod" {
 # Internet Gateway Settings
 #####################################
 resource "aws_internet_gateway" "mod" {
-  count = "${length(var.public_subnets) > 0 ? 1 : 0}"
 
   vpc_id = "${aws_vpc.mod.id}"
-
-  tags = "${merge(var.tags, map("Name", format("%s-igw", var.name)))}"
+  tags = "${merge(var.tags, map("Name", format("%s", var.igw_name)))}"
 }

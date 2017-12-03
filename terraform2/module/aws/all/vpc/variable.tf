@@ -34,6 +34,11 @@ variable "tags" {
 #####################################
 # Internet Gateway Settings
 #####################################
+variable "igw_name" {
+  description = "Internet Gateway Name"
+  default     = ""
+}
+
 variable "enable_nat_gateway" {
   description = "should be true if you want to provision NAT Gateways for each of your private networks"
   default     = true
