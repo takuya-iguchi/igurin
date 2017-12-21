@@ -1,0 +1,27 @@
+module "sg_1" {
+  source = "../../module/aws/sg"
+  vpc_id = ""
+
+
+  tags = {}
+  name = ""
+  description = ""
+
+  ingress_rules = []
+
+  egress_rules = []
+}
+
+module "sg_2" {
+  source = ""
+  vpc_id = ""
+
+  tags = {}
+
+  name = ""
+  description = ""
+
+  ingress_rules = []
+
+  egress_rules = []
+}

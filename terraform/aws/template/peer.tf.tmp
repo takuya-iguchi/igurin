@@ -1,0 +1,14 @@
+module "peering" {
+  source = "../../module/aws/peering"
+  vpc_id   = ""
+
+  remote_cidr = ""
+  remote_subnet = []
+
+  cidr = ""
+  public_subnet  = []
+  private_subnet = []
+
+  public_route_table_id  = ""
+  private_route_table_id = ""
+}

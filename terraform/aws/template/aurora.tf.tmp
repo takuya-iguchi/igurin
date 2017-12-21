@@ -1,0 +1,32 @@
+module "aurora" {
+  source = "../../module/aws/aurora"
+
+  monitoring_role_name = ""
+
+  cluster_name  = ""
+  database_name = ""
+  username      = ""
+  password      = ""
+  backup        = ""
+  backup_window = ""
+  mente_window  = ""
+  port          = ""
+  security_group_id = ""
+  subnet_group_name = ""
+  storage_encrypted = ""
+
+  instance_name = ""
+  cluster_instance_count = ""
+  cluster_instance_class = ""
+  monitor_intarval = ""
+
+  parameter_group_name = ""
+  parameter_group_description = ""
+
+  cluster_parameter_group_name = ""
+  cluster_parameter_description = ""
+
+  cluster_parameters = []
+
+  db_parameters = []
+}

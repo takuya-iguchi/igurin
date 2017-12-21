@@ -1,0 +1,17 @@
+module "redis" {
+  source = "../../module/aws/redis"
+
+  redis_name = ""
+  redis_description = ""
+  redis_clusters = ""
+  redis_node_type = ""
+  redis_failover = ""
+  redis_version = ""
+  redis_port =
+  subnet_group = ""
+  sg_id = ""
+  apply_immediately = ""
+  parameter_group_name = ""
+  parameter_group_description = ""
+  elasticache_parameters = []
+}

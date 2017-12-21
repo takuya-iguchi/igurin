@@ -1,0 +1,18 @@
+module "vpc" {
+  source = "../../module/aws/vpc"
+
+  tags = {}
+
+  name = ""
+  igw_name = ""
+  cidr = ""
+
+  azs             = []
+  public_subnets  = []
+  public_subnets_name = []
+  public_route_table_name = ""
+
+  private_subnets = []
+  private_subnets_name = []
+  private_route_table_name = []
+}

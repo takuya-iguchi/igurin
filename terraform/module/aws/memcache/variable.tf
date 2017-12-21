@@ -1,0 +1,13 @@
+variable "cluster_id" {default = ""}
+variable "engine" {default = ""}
+variable "engine_version" {default = ""}
+variable "node_type" {default = ""}
+variable "port" {default = ""}
+variable "num_cache_nodes" {default = ""}
+variable "parameter_group_name" {default = ""}
+variable "parameter_group_description" {default = ""}
+variable "elasticache_parameters" {default = ""}
+variable "subnet_group" {default = ""}
+variable "sg_id" {default = ""}
+variable "apply_immediately" {default = ""}
+variable "memcache_parameters" {default = []}

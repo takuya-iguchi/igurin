@@ -1,0 +1,15 @@
+module "memcache" {
+  source = "../../module/aws/memcache"
+
+  cluster_id = ""
+  node_type  = ""
+  engine_version = ""
+  port =
+  num_cache_nodes =
+  elasticache_parameters = ""
+  sg_id = ""
+  apply_immediately = ""
+  parameter_group_name = ""
+  parameter_group_description = ""
+  memcache_parameters = []
+}

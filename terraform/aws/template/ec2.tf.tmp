@@ -1,0 +1,21 @@
+module "ec2" {
+  source = "../../module/aws/ec2"
+
+  tags = {"}
+
+  name              = ""
+  instance_type     = ""
+  ami_id            = ""
+  subnet_id         = ""
+  availability_zone = ""
+
+  ebs_optimized = ""
+  monitoring    = ""
+  iam_instance_profile   = ""
+
+  vpc_security_group_ids = []
+  root_block_device      = {}
+  ebs_block_device       = []
+
+  enable_eip             = 
+}
