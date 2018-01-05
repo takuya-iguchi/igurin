@@ -1,31 +1,33 @@
 module "aurora" {
   source = "../../module/aws/aurora"
 
-  monitoring_role_name = "rds-monitoring-role"
+  monitoring_role_name = "Monitoring"
+  monitor_intarval = "0"
 
-  cluster_name  = "aurora-cl-01"
-  database_name = ""
-  username      = ""
-  password      = ""
+  cluster_name  = "dev-aurora-cl-01"
+  database_name = "dev"
+  username      = "root"
+  password      = "Zw6fBjcP"
   backup        = "1"
-  backup_window = "02:00-4:00"
+  backup_window = "03:00-04:00"
   mente_window  = "wed:01:00-wed:01:30"
   port          = "3306"
+
+  db_subnet_gourp_name        = "dev"
+  db_subnet_gourp_description = "dev"
+  db_subnet_group_subnet_ids  = "${module.vpc.private_subnets}"
+
   security_group_id = ["${module.sg_default.sg_id}", "${module.sg_aurora.sg_id}"]
   storage_encrypted = "False"
 
-  db_subnet_gourp_name        = ""
-  db_subnet_gourp_description = ""
-  db_subnet_group_subnet_ids  = "${module.vpc.private_subnets}"
-  instance_name = "-aurora-cl-01-01"
+  instance_name = "dev-aurora-cl-01-01"
   cluster_instance_count = "1"
   cluster_instance_class = "db.t2.small"
-  monitor_intarval = "60"
 
-  parameter_group_name = "-aurora-t2small"
+  parameter_group_name = "dev-aurora-t2small"
   parameter_group_description = "for t2small"
 
-  cluster_parameter_group_name = "-aurora-cl-t2small"
+  cluster_parameter_group_name = "dev-aurora-cl-t2small"
   cluster_parameter_description = "for t2small"
 
   final_snapshot_name = "final"

@@ -12,7 +12,7 @@ resource "aws_rds_cluster" "this" {
   preferred_maintenance_window    = "${var.mente_window}"
   port                            = "${var.port}"
   vpc_security_group_ids          = [ "${var.security_group_id}" ]
-  db_subnet_group_name            = "${var.subnet_group_name}"
+  db_subnet_group_name            = "${aws_db_subnet_group.database.name}"
   storage_encrypted               = "${var.storage_encrypted}"
   db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.this.name}"
   final_snapshot_identifier       = "${var.final_snapshot_name}"
@@ -23,14 +23,13 @@ resource "aws_rds_cluster" "this" {
 ############################
 
 resource "aws_rds_cluster_instance" "this" {
-  count = "${var.cluster_instance_count}"
 
   identifier              = "${var.instance_name}"
   cluster_identifier      = "${aws_rds_cluster.this.id}"
   instance_class          = "${var.cluster_instance_class}"
-  db_subnet_group_name    = "${var.subnet_group_name}"
+  db_subnet_group_name    = "${aws_db_subnet_group.database.name}"
   db_parameter_group_name = "${aws_db_parameter_group.this.name}"
-  monitoring_role_arn     = "${var.monitoring_role_name}"
+  monitoring_role_arn     = "${data.aws_iam_role.this.arn}"
   monitoring_interval     = "${var.monitor_intarval}"
 }
 
