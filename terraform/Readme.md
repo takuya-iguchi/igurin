@@ -1,6 +1,6 @@
 # Teraform
 
-## ファイル構成
+### ファイル構成
 (1).[provide.tf] <br>
 AWSへの接続情報(リージョン)、tfstate連携情報を記載
 
@@ -21,7 +21,7 @@ terraform管理外のAWSリソースを取得するファイル
 構築するサービスのパラメータを記載しているファイル
 基本的には、こちらのファイルのパラメータを変更して構築を進める
 
-## 全体構成
+### 全体構成
 ~~~
 terraform
 ├── README.md
@@ -63,3 +63,12 @@ terraform
               ├── main.tf
               └── variable.tf
 ~~~
+
+## 参考サイト
+|タイトル|サイト|
+|:--|:--|
+|Terraform公式|https://www.terraform.io/|
+|Terraformの開発github|https://github.com/hashicorp/terraform|
+|Terraformのベストプラクティス|https://github.com/hashicorp/best-practices|
+|各モジュールのテンプレート|https://github.com/terraform-community-modules|
+|AWSモジュールテンプレート|https://github.com/terraform-aws-modules|
